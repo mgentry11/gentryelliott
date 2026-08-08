@@ -1,0 +1,536 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Gentry Elliott — Intelligent Systems for the Real World</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0b0b0e;
+    --surface: rgba(255,255,255,0.04);
+    --surface-hover: rgba(255,255,255,0.07);
+    --border: rgba(255,255,255,0.08);
+    --text: #e8e8ea;
+    --text-muted: #8a8a91;
+    --accent: #6c8cff;
+    --accent-glow: rgba(108,140,255,0.12);
+    --gradient-1: #6c8cff;
+    --gradient-2: #a78bfa;
+    --max-w: 1140px;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+  }
+
+  /* Background noise */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: radial-gradient(circle at 25% 0%, rgba(108,140,255,0.03) 0%, transparent 50%),
+                      radial-gradient(circle at 75% 100%, rgba(167,139,250,0.03) 0%, transparent 50%);
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .container { max-width: var(--max-w); margin: 0 auto; padding: 0 24px; position: relative; z-index: 1; }
+
+  /* Glass card */
+  .glass {
+    background: var(--surface);
+    backdrop-filter: blur(20px) saturate(1.2);
+    -webkit-backdrop-filter: blur(20px) saturate(1.2);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    transition: background 0.3s, border-color 0.3s, transform 0.2s;
+  }
+  .glass:hover {
+    background: var(--surface-hover);
+    border-color: rgba(255,255,255,0.12);
+  }
+
+  /* NAV */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    background: rgba(11,11,14,0.7);
+    backdrop-filter: blur(24px) saturate(1.3);
+    -webkit-backdrop-filter: blur(24px) saturate(1.3);
+    border-bottom: 1px solid var(--border);
+    padding: 0 24px;
+  }
+  nav .container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 64px;
+  }
+  nav .logo {
+    font-size: 18px;
+    font-weight: 600;
+    letter-spacing: -0.02em;
+    color: var(--text);
+    text-decoration: none;
+  }
+  nav .logo span { color: var(--accent); }
+  nav .links { display: flex; gap: 32px; align-items: center; }
+  nav .links a {
+    color: var(--text-muted);
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 500;
+    transition: color 0.2s;
+  }
+  nav .links a:hover { color: var(--text); }
+
+  /* HERO */
+  .hero {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    padding: 120px 0 80px;
+    position: relative;
+  }
+  .hero-content { max-width: 760px; }
+  .hero-label {
+    display: inline-block;
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 20px;
+    padding: 6px 14px;
+    border: 1px solid rgba(108,140,255,0.2);
+    border-radius: 100px;
+    background: rgba(108,140,255,0.06);
+  }
+  .hero h1 {
+    font-size: clamp(40px, 7vw, 72px);
+    font-weight: 700;
+    letter-spacing: -0.04em;
+    line-height: 1.05;
+    margin-bottom: 24px;
+  }
+  .hero h1 .accent {
+    background: linear-gradient(135deg, var(--gradient-1), var(--gradient-2));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  .hero p {
+    font-size: 18px;
+    color: var(--text-muted);
+    max-width: 600px;
+    margin-bottom: 40px;
+    line-height: 1.7;
+  }
+  .hero-actions { display: flex; gap: 16px; flex-wrap: wrap; }
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 14px 32px;
+    border-radius: 12px;
+    font-size: 15px;
+    font-weight: 600;
+    text-decoration: none;
+    transition: all 0.25s;
+    cursor: pointer;
+    border: none;
+  }
+  .btn-primary {
+    background: linear-gradient(135deg, var(--gradient-1), var(--gradient-2));
+    color: #fff;
+    box-shadow: 0 4px 24px rgba(108,140,255,0.25);
+  }
+  .btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 32px rgba(108,140,255,0.35);
+  }
+  .btn-secondary {
+    background: var(--surface);
+    color: var(--text);
+    border: 1px solid var(--border);
+  }
+  .btn-secondary:hover {
+    background: var(--surface-hover);
+    border-color: rgba(255,255,255,0.15);
+  }
+
+  /* SECTION */
+  section { padding: 100px 0; }
+  .section-label {
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 12px;
+  }
+  .section-title {
+    font-size: clamp(28px, 4vw, 40px);
+    font-weight: 700;
+    letter-spacing: -0.03em;
+    margin-bottom: 16px;
+  }
+  .section-desc {
+    font-size: 16px;
+    color: var(--text-muted);
+    max-width: 640px;
+    margin-bottom: 48px;
+    line-height: 1.7;
+  }
+
+  /* CAPABILITIES GRID */
+  .cap-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 20px;
+  }
+  .cap-card {
+    padding: 32px;
+    position: relative;
+    overflow: hidden;
+  }
+  .cap-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 3px;
+    background: linear-gradient(90deg, var(--gradient-1), var(--gradient-2));
+    opacity: 0.4;
+  }
+  .cap-icon {
+    width: 44px; height: 44px;
+    border-radius: 12px;
+    background: rgba(108,140,255,0.08);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 20px;
+    font-size: 22px;
+  }
+  .cap-card h3 {
+    font-size: 18px;
+    font-weight: 600;
+    margin-bottom: 10px;
+    letter-spacing: -0.01em;
+  }
+  .cap-card p {
+    font-size: 14px;
+    color: var(--text-muted);
+    line-height: 1.65;
+  }
+
+  /* APPROACH */
+  .approach-steps {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 24px;
+  }
+  .step-card {
+    padding: 28px;
+    text-align: center;
+  }
+  .step-num {
+    font-size: 36px;
+    font-weight: 700;
+    background: linear-gradient(135deg, var(--gradient-1), var(--gradient-2));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: 12px;
+    line-height: 1;
+  }
+  .step-card h3 {
+    font-size: 16px;
+    font-weight: 600;
+    margin-bottom: 8px;
+  }
+  .step-card p {
+    font-size: 14px;
+    color: var(--text-muted);
+    line-height: 1.6;
+  }
+
+  /* CONTACT */
+  .contact-wrap {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+    align-items: start;
+  }
+  @media (max-width: 768px) {
+    .contact-wrap { grid-template-columns: 1fr; }
+  }
+  .contact-info h3 { font-size: 20px; font-weight: 600; margin-bottom: 16px; }
+  .contact-info p { font-size: 15px; color: var(--text-muted); line-height: 1.7; margin-bottom: 24px; }
+  .contact-detail { display: flex; gap: 12px; align-items: center; margin-bottom: 12px; }
+  .contact-detail .label { color: var(--text-muted); font-size: 14px; }
+  .contact-detail .value { color: var(--text); font-size: 14px; font-weight: 500; }
+
+  .contact-form { display: flex; flex-direction: column; gap: 16px; }
+  .contact-form input,
+  .contact-form textarea {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 16px 20px;
+    font-family: inherit;
+    font-size: 14px;
+    color: var(--text);
+    outline: none;
+    transition: border-color 0.2s, background 0.2s;
+  }
+  .contact-form input:focus,
+  .contact-form textarea:focus {
+    border-color: var(--accent);
+    background: rgba(108,140,255,0.04);
+  }
+  .contact-form input::placeholder,
+  .contact-form textarea::placeholder { color: var(--text-muted); }
+  .contact-form textarea { resize: vertical; min-height: 120px; }
+  .contact-form button { align-self: flex-start; }
+
+  /* FOOTER */
+  footer {
+    border-top: 1px solid var(--border);
+    padding: 32px 0;
+    text-align: center;
+  }
+  footer p { font-size: 13px; color: var(--text-muted); }
+  footer .footer-links { display: flex; justify-content: center; gap: 24px; margin-bottom: 12px; }
+  footer .footer-links a { color: var(--text-muted); text-decoration: none; font-size: 13px; transition: color 0.2s; }
+  footer .footer-links a:hover { color: var(--text); }
+
+  /* Responsive tweaks */
+  @media (max-width: 640px) {
+    nav .links { display: none; }
+    section { padding: 64px 0; }
+    .cap-grid { grid-template-columns: 1fr; }
+    .approach-steps { grid-template-columns: 1fr 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="container">
+    <a href="#" class="logo">Gentry<span>Elliott</span></a>
+    <div class="links">
+      <a href="#capabilities">Capabilities</a>
+      <a href="#approach">Approach</a>
+      <a href="#contact">Contact</a>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="container">
+    <div class="hero-content">
+      <div class="hero-label">Boutique AI Consulting</div>
+      <h1>Intelligent Systems<br>for the <span class="accent">Real World</span></h1>
+      <p>
+        We design and deploy high-stakes AI systems for organizations that need
+        certainty over output, control over risk, and systems that actually
+        work in production.
+      </p>
+      <div class="hero-actions">
+        <a href="#contact" class="btn btn-primary">Get in Touch</a>
+        <a href="#capabilities" class="btn btn-secondary">Explore Capabilities</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CAPABILITIES -->
+<section id="capabilities">
+  <div class="container">
+    <div class="section-label">What We Do</div>
+    <h2 class="section-title">Capabilities</h2>
+    <p class="section-desc">
+      We build systems that reason, verify, and adapt — engineered for
+      environments where failure is not an option. Our work spans the full
+      lifecycle of intelligent software, from design through deployment.
+    </p>
+    <div class="cap-grid">
+
+      <div class="glass cap-card">
+        <div class="cap-icon">&#10003;</div>
+        <h3>AI Verification &amp; Validation</h3>
+        <p>
+          Ensure your AI systems behave correctly, consistently, and predictably
+          before they reach production. We design rigorous evaluation frameworks
+          that catch failures traditional testing misses — enabling confident
+          deployment at scale.
+        </p>
+      </div>
+
+      <div class="glass cap-card">
+        <div class="cap-icon">&#9733;</div>
+        <h3>Domain-Specific Knowledge Systems</h3>
+        <p>
+          Turn proprietary data, legacy documents, and expert know-how into
+          operational intelligence. We build knowledge architectures that
+          retrieve, synthesize, and reason over your domain — without leaking
+          what makes you competitive.
+        </p>
+      </div>
+
+      <div class="glass cap-card">
+        <div class="cap-icon">&#9881;</div>
+        <h3>Custom AI Applications</h3>
+        <p>
+          From workflow automation to decision-support agents, we design and
+          deploy purpose-built systems that fit your existing infrastructure.
+          No platform lock-in. No black boxes. Systems that earn their keep.
+        </p>
+      </div>
+
+      <div class="glass cap-card">
+        <div class="cap-icon">&#9878;</div>
+        <h3>AI Governance &amp; Safety</h3>
+        <p>
+          Define the guardrails, controls, and oversight frameworks that let you
+          adopt AI without accepting unacceptable risk. We help organizations
+          stay compliant, auditable, and aligned with their own values.
+        </p>
+      </div>
+
+      <div class="glass cap-card">
+        <div class="cap-icon">&#9998;</div>
+        <h3>Contract &amp; Compliance Solutions</h3>
+        <p>
+          Automate the review, generation, and monitoring of contracts and
+          regulatory documents with structured intelligence that understands
+          nuance — not just keywords. Reduce cycle time without reducing rigor.
+        </p>
+      </div>
+
+      <div class="glass cap-card">
+        <div class="cap-icon">&#9670;</div>
+        <h3>Data Integrity &amp; Provenance</h3>
+        <p>
+          Build trust into your data pipelines with immutable lineage tracking,
+          integrity verification, and audit-ready provenance systems. Know
+          where every input came from, how it was transformed, and what it
+          means.
+        </p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- APPROACH -->
+<section id="approach">
+  <div class="container">
+    <div class="section-label">How We Work</div>
+    <h2 class="section-title">Our Approach</h2>
+    <p class="section-desc">
+      We do not ship experiments. We deliver production systems, backed by a
+      repeatable process built on first principles and field experience.
+    </p>
+    <div class="approach-steps">
+      <div class="glass step-card">
+        <div class="step-num">01</div>
+        <h3>Analyze</h3>
+        <p>Understand the problem, the domain, and the constraints before writing a line of code.</p>
+      </div>
+      <div class="glass step-card">
+        <div class="step-num">02</div>
+        <h3>Design</h3>
+        <p>Architect systems for safety, observability, and adaptability from the ground up.</p>
+      </div>
+      <div class="glass step-card">
+        <div class="step-num">03</div>
+        <h3>Build</h3>
+        <p>Iterate fast with continuous validation — not just against specs but against real edge cases.</p>
+      </div>
+      <div class="glass step-card">
+        <div class="step-num">04</div>
+        <h3>Verify</h3>
+        <p>Stress-test every layer before handoff. We stay until the system is stable in your environment.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="container">
+    <div class="section-label">Let's Talk</div>
+    <h2 class="section-title">Get in Touch</h2>
+    <p class="section-desc">
+      We work with a small number of clients at a time. If you have a problem
+      that demands rigorous thinking and disciplined engineering, we should talk.
+    </p>
+    <div class="contact-wrap">
+      <div class="contact-info">
+        <h3>Gentry Elliott</h3>
+        <p>
+          Boutique consultancy specializing in high-stakes intelligent systems.
+          Based in the United States. Available for direct engagements,
+          advisory, and partnership.
+        </p>
+        <div class="contact-detail">
+          <span class="label">Email</span>
+          <span class="value">contact@gentryelliott.ai</span>
+        </div>
+        <div class="contact-detail">
+          <span class="label">Web</span>
+          <span class="value">gentryelliott.ai</span>
+        </div>
+      </div>
+      <form class="contact-form" onsubmit="return handleForm(event)">
+        <input type="text" placeholder="Name" required>
+        <input type="email" placeholder="Email" required>
+        <input type="text" placeholder="Organization">
+        <textarea placeholder="Tell us about your project..." required></textarea>
+        <button type="submit" class="btn btn-primary">Send Inquiry</button>
+        <p id="form-status" style="font-size:13px;color:var(--text-muted);display:none;"></p>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="container">
+    <div class="footer-links">
+      <a href="#capabilities">Capabilities</a>
+      <a href="#approach">Approach</a>
+      <a href="#contact">Contact</a>
+    </div>
+    <p>&copy;2026 Gentry Elliott. All rights reserved.</p>
+  </div>
+</footer>
+
+<script>
+function handleForm(e) {
+  e.preventDefault();
+  const status = document.getElementById('form-status');
+  status.style.display = 'block';
+  status.textContent = 'Thank you. We will be in touch.';
+  setTimeout(() => { status.style.display = 'none'; }, 4000);
+  e.target.reset();
+  return false;
+}
+</script>
+
+</body>
+</html>
