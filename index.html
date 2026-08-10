@@ -322,6 +322,40 @@
     .cap-grid { grid-template-columns: 1fr; }
     .approach-steps { grid-template-columns: 1fr 1fr; }
   }
+
+  /* BUILDER */
+  .builder-wrap { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+  .chat-panel { display: flex; flex-direction: column; }
+  .chat-msgs { padding: 20px; min-height: 320px; max-height: 400px; overflow-y: auto; display: flex; flex-direction: column; gap: 12px; }
+  .msg { max-width: 88%; padding: 12px 16px; border-radius: 14px; font-size: 14px; line-height: 1.55; animation: fadeIn 0.3s ease; }
+  .msg.bot { background: rgba(255,255,255,0.06); border: 1px solid var(--border); align-self: flex-start; }
+  .msg.user { background: linear-gradient(135deg, var(--gradient-1), var(--gradient-2)); color: #fff; align-self: flex-end; }
+  .msg .hl { color: var(--accent); font-weight: 600; }
+  .chat-input-row { display: flex; gap: 10px; padding: 14px 20px; border-top: 1px solid var(--border); }
+  .chat-input-row input { flex: 1; background: rgba(255,255,255,0.05); border: 1px solid var(--border); border-radius: 10px; padding: 12px 16px; color: var(--text); font-size: 14px; font-family: inherit; outline: none; }
+  .chat-input-row input:focus { border-color: var(--accent); }
+  .chat-input-row button { background: var(--accent); color: #fff; border: none; border-radius: 10px; padding: 12px 20px; font-weight: 600; font-size: 14px; cursor: pointer; transition: opacity 0.2s; }
+  .chat-input-row button:disabled { opacity: 0.4; cursor: default; }
+  .typing-dots { display: flex; gap: 4px; padding: 4px 0; }
+  .typing-dots span { width: 6px; height: 6px; border-radius: 50%; background: var(--text-muted); animation: bounce 1.4s infinite ease-in-out; }
+  .typing-dots span:nth-child(2) { animation-delay: 0.16s; }
+  .typing-dots span:nth-child(3) { animation-delay: 0.32s; }
+  @keyframes bounce { 0%,60%,100% { transform: translateY(0); } 30% { transform: translateY(-4px); } }
+  @keyframes fadeIn { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: translateY(0); } }
+  .proposal-step { margin-bottom: 20px; }
+  .prop-label { font-size: 11px; font-weight: 700; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 6px; }
+  .prop-title { font-size: 15px; font-weight: 600; margin-bottom: 4px; }
+  .prop-body { font-size: 13px; color: var(--text-muted); line-height: 1.6; }
+  .prop-body ul { margin: 6px 0; padding-left: 18px; }
+  .prop-body li { margin-bottom: 2px; }
+  .empty-state { display: flex; flex-direction: column; align-items: center; justify-content: center; min-height: 320px; color: var(--text-muted); text-align: center; padding: 20px; }
+  .empty-state .icon { font-size: 2.5rem; margin-bottom: 12px; opacity: 0.3; }
+  .empty-state h3 { font-size: 16px; font-weight: 600; margin-bottom: 8px; }
+  .empty-state p { font-size: 13px; max-width: 280px; }
+  .quick-caps { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 12px; }
+  .quick-cap { font-size: 12px; background: rgba(108,140,255,0.08); border: 1px solid rgba(108,140,255,0.15); border-radius: 20px; padding: 5px 14px; cursor: pointer; transition: all 0.2s; color: var(--text-muted); }
+  .quick-cap:hover { background: rgba(108,140,255,0.15); border-color: var(--accent); color: var(--text); }
+  @media (max-width: 768px) { .builder-wrap { grid-template-columns: 1fr; } }
 </style>
 </head>
 <body>
@@ -333,6 +367,7 @@
     <div class="links">
       <a href="#capabilities">Capabilities</a>
       <a href="#approach">Approach</a>
+      <a href="#builder">Project Builder</a>
       <a href="#contact">Contact</a>
     </div>
   </div>
@@ -465,6 +500,48 @@
         <div class="step-num">04</div>
         <h3>Verify</h3>
         <p>Stress-test every layer before handoff. We stay until the system is stable in your environment.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- BUILDER -->
+<section id="builder">
+  <div class="container">
+    <div class="section-label">Try It</div>
+    <h2 class="section-title">Project Builder</h2>
+    <p class="section-desc">
+      Describe your project in plain language. Our AI walks through the Gentry Elliott process
+      and generates a structured proposal — in real time. No forms. No sales calls. Just describe
+      what you need and see what we would build.
+    </p>
+    <div class="builder-wrap">
+      <div class="glass chat-panel">
+        <div class="chat-msgs" id="chatMsgs">
+          <div class="msg bot">Hi. I'm the project builder. Tell me what you need — an AI system, a verification framework, a knowledge architecture, or something else entirely.</div>
+        </div>
+        <div class="chat-input-row">
+          <input type="text" id="chatInp" placeholder="Describe your project..." autofocus>
+          <button id="chatBtn">Send</button>
+        </div>
+        <div style="padding:0 20px 12px">
+          <div class="quick-caps">
+            <span class="quick-cap" onclick="fillCap('AI Verification')">AI Verification</span>
+            <span class="quick-cap" onclick="fillCap('Knowledge System')">Knowledge System</span>
+            <span class="quick-cap" onclick="fillCap('Custom Application')">Custom App</span>
+            <span class="quick-cap" onclick="fillCap('AI Governance')">Governance</span>
+            <span class="quick-cap" onclick="fillCap('Contract Compliance')">Contracts</span>
+            <span class="quick-cap" onclick="fillCap('Data Integrity')">Data Integrity</span>
+          </div>
+        </div>
+      </div>
+      <div class="glass" style="padding:24px" id="proposalPanel">
+        <div class="empty-state" id="emptyState">
+          <div class="icon">&#128161;</div>
+          <h3>Describe your project</h3>
+          <p>Tell us what you're building in the chat panel. The proposal builds in real time as you describe your needs.</p>
+        </div>
+        <div id="proposalContent" style="display:none"></div>
       </div>
     </div>
   </div>
