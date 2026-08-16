@@ -1,0 +1,98 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000" width="1000" height="1000">
+  <defs>
+    <style>
+      .eq { font-family: 'Times New Roman', serif; font-size: 20px; fill: #000; }
+      .eq-header { font-family: 'Times New Roman', serif; font-size: 20px; font-weight: bold; fill: #000; }
+      .eq-small { font-family: 'Times New Roman', serif; font-size: 16px; fill: #000; }
+      .line { stroke: #000; stroke-width: 1.5; }
+      .line-dashed { stroke: #000; stroke-width: 1; stroke-dasharray: 4,4; }
+    </style>
+  </defs>
+
+  <rect width="1000" height="1000" fill="transparent"/>
+
+  <!-- Title Band -->
+  <text x="500" y="40" text-anchor="middle" class="eq-header" font-size="22">Electromagnetic Field Analysis — Research Protocol</text>
+  <line x1="30" y1="55" x2="970" y2="55" class="line"/>
+
+  <!-- ROW 1: Maxwell's Equations -->
+  <text x="50" y="90" class="eq-header" font-size="22">Maxwell's Equations</text>
+  <text x="50" y="125" class="eq">∮ E · dA = Q_enc / ε₀</text>
+  <text x="500" y="125" class="eq">∮ B · dA = 0</text>
+  <text x="50" y="155" class="eq">∮ E · dl = -d/dt ∫ B · dA</text>
+  <text x="500" y="155" class="eq">∮ B · dl = μ₀I_enc + μ₀ε₀ d/dt ∫ E · dA</text>
+
+  <line x1="30" y1="170" x2="970" y2="170" class="line-dashed"/>
+
+  <!-- ROW 2: Wave Equations -->
+  <text x="50" y="205" class="eq-header">Wave Propagation</text>
+  <text x="50" y="240" class="eq">∇²E = μ₀ε₀ ∂²E/∂t²</text>
+  <text x="500" y="240" class="eq">∇²B = μ₀ε₀ ∂²B/∂t²</text>
+  <text x="50" y="270" class="eq">c = 1 / √(μ₀ε₀) = 299,792,458 m/s</text>
+  <text x="500" y="270" class="eq">E(r,t) = E₀ cos(k·r - ωt + φ)</text>
+
+  <line x1="30" y1="285" x2="970" y2="285" class="line-dashed"/>
+
+  <!-- ROW 3: Shielding -->
+  <text x="50" y="320" class="eq-header">Skin Depth &amp; Shielding</text>
+  <text x="50" y="355" class="eq">δ = 1 / √(πfμσ)</text>
+  <text x="300" y="355" class="eq">SE = 20 log₁₀(E_i / E_t)</text>
+  <text x="600" y="355" class="eq">SE_dB = k · (t/δ) · log e</text>
+  <text x="50" y="385" class="eq-small">For Cu at 1 GHz: δ = 2.09 μm, SE ≈ 72 dB per 100 μm</text>
+
+  <line x1="30" y1="400" x2="970" y2="400" class="line-dashed"/>
+
+  <!-- ROW 4: Faraday Cage -->
+  <text x="50" y="435" class="eq-header">Faraday Cage &amp; Conductive Parameters</text>
+  <text x="50" y="470" class="eq">f_c = c / 2a</text>
+  <text x="300" y="470" class="eq">η = √(μ/ε_r)</text>
+  <text x="500" y="470" class="eq">R_s = ρ / t</text>
+  <text x="700" y="470" class="eq">σ = 1/ρ</text>
+
+  <line x1="30" y1="485" x2="970" y2="485" class="line-dashed"/>
+
+  <!-- ROW 5: Induction -->
+  <text x="50" y="520" class="eq-header">Induction &amp; Lenz</text>
+  <text x="50" y="555" class="eq">ε = -N · dΦ_B/dt</text>
+  <text x="350" y="555" class="eq">Φ_B = ∫ B · dA</text>
+  <text x="600" y="555" class="eq">E_ind = -dΦ/dt</text>
+
+  <line x1="30" y1="570" x2="970" y2="570" class="line-dashed"/>
+
+  <!-- ROW 6: Sine Wave / Field Diagram -->
+  <text x="50" y="605" class="eq-header">Wave Propagation Diagram</text>
+
+  <!-- Axes -->
+  <line x1="80" y1="630" x2="80" y2="780" class="line"/>
+  <line x1="60" y1="705" x2="920" y2="705" class="line"/>
+
+  <!-- E field sine wave -->
+  <path d="M80,705 C110,660 140,660 170,705 C200,750 230,750 260,705 C290,660 320,660 350,705 C380,750 410,750 440,705 C470,660 500,660 530,705 C560,750 590,750 620,705 C650,660 680,660 710,705 C740,750 770,750 800,705 C830,660 860,660 890,705" fill="none" stroke="#000" stroke-width="2"/>
+
+  <!-- B field dashed wave -->
+  <path d="M80,705 C110,750 140,750 170,705 C200,660 230,660 260,705 C290,750 320,750 350,705 C380,660 410,660 440,705 C470,750 500,750 530,705 C560,660 590,660 620,705 C650,750 680,750 710,705 C740,660 770,660 800,705 C830,750 860,750 890,705" fill="none" stroke="#000" stroke-width="1.5" stroke-dasharray="5,3"/>
+
+  <text x="30" y="660" class="eq-small">E</text>
+  <text x="30" y="740" class="eq-small">B</text>
+  <text x="930" y="710" class="eq-small">z</text>
+
+  <!-- λ annotation -->
+  <line x1="170" y1="790" x2="350" y2="790" class="line-dashed"/>
+  <text x="230" y="810" class="eq-small">λ</text>
+
+  <line x1="30" y1="825" x2="970" y2="825" class="line-dashed"/>
+
+  <!-- ROW 7: Bottom formulas -->
+  <text x="50" y="860" class="eq-header">Faraday's Law</text>
+  <text x="50" y="890" class="eq">ε = -N · dΦ_B/dt</text>
+  <text x="350" y="890" class="eq">Φ_B = ∫ B · dA</text>
+
+  <text x="600" y="860" class="eq-header">Lenz's Law</text>
+  <text x="600" y="890" class="eq">E_ind = -dΦ/dt</text>
+  <text x="600" y="915" class="eq-small">Direction opposes change</text>
+
+  <line x1="30" y1="935" x2="970" y2="935" class="line"/>
+
+  <!-- Footer -->
+  <text x="500" y="965" text-anchor="middle" class="eq-small">TerraShield Research | Protocol TSL-EMF-101 | v1.0</text>
+</svg>
