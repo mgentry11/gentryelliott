@@ -3,246 +3,194 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>VoltGuard | Advanced Protection</title>
+    <title>VoltGuard | Project Plan</title>
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body { 
-            font-family: 'Arial', sans-serif; 
+            font-family: 'Georgia', serif; 
             background: #0a0a1a;
-            color: #fff;
-            overflow-x: hidden;
-        }
-        .hero { 
-            min-height: 100vh; 
-            display: flex; 
-            flex-direction: column;
-            align-items: center; 
-            justify-content: center;
-            background: linear-gradient(135deg, #0a0a1a 0%, #1a1a2e 50%, #16213e 100%);
-            text-align: center;
-            padding: 40px 20px 60px;
-            position: relative;
-        }
-        .hero::before {
-            content: '';
-            position: absolute;
-            top: 0; left: 0; right: 0; bottom: 0;
-            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><text x="5" y="15" font-size="6" fill="white" opacity="0.03">∇·E=ρ/ε₀</text><text x="5" y="30" font-size="6" fill="white" opacity="0.03">∇·B=0</text><text x="5" y="45" font-size="6" fill="white" opacity="0.03">∇×E=-∂B/∂t</text><text x="5" y="60" font-size="6" fill="white" opacity="0.03">∇×B=μ₀J+μ₀ε₀∂E/∂t</text><text x="5" y="75" font-size="6" fill="white" opacity="0.03">c=1/√(μ₀ε₀)</text></svg>') repeat;
-            background-size: 200px 200px;
-            pointer-events: none;
-        }
-        .hero h1 { 
-            font-size: 4em; 
-            font-weight: 800;
-            letter-spacing: 4px;
-            margin-bottom: 15px;
-            background: linear-gradient(45deg, #00d4ff, #7b2cbf, #00d4ff);
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-            text-shadow: 0 0 40px rgba(0,212,255,0.3);
-            position: relative;
-            z-index: 1;
-        }
-        .hero .tagline { 
-            font-size: 1.2em; 
-            color: #888; 
-            margin-bottom: 30px;
-            letter-spacing: 6px;
-            text-transform: uppercase;
-            position: relative;
-            z-index: 1;
-        }
-        .hero p { 
-            max-width: 600px; 
-            margin: 0 auto 30px; 
-            font-size: 1.1em; 
-            color: #aaa;
+            color: #ddd;
             line-height: 1.8;
-            position: relative;
-            z-index: 1;
+            padding: 40px 20px;
         }
-        .hero .cta {
-            display: inline-block;
-            background: linear-gradient(45deg, #00d4ff, #7b2cbf);
-            color: white;
-            padding: 16px 50px;
-            text-decoration: none;
-            border-radius: 30px;
-            font-weight: bold;
-            font-size: 1.1em;
-            transition: transform 0.3s, box-shadow 0.3s;
-            border: none;
-            cursor: pointer;
-            position: relative;
-            z-index: 1;
+        .container { max-width: 900px; margin: 0 auto; }
+        h1 { color: #00d4ff; font-size: 2.2em; margin-bottom: 5px; }
+        .subtitle { color: #666; margin-bottom: 30px; }
+        h2 { color: #00d4ff; border-bottom: 1px solid #1a1a2e; padding-bottom: 8px; margin: 40px 0 20px; font-size: 1.4em; }
+        h3 { color: #b366ff; margin: 25px 0 10px; }
+        h4 { color: #aaa; margin: 15px 0 5px; }
+        p { margin-bottom: 12px; color: #bbb; }
+        ul, ol { margin-left: 25px; margin-bottom: 15px; }
+        li { margin-bottom: 6px; color: #bbb; }
+        table { width: 100%; border-collapse: collapse; margin: 15px 0; }
+        th { background: #1a1a2e; color: #00d4ff; padding: 10px 12px; text-align: left; border: 1px solid #2a2a3e; }
+        td { padding: 10px 12px; border: 1px solid #2a2a3e; }
+        tr:nth-child(even) td { background: rgba(255,255,255,0.02); }
+        .highlight {
+            background: rgba(0,212,255,0.08);
+            border-left: 4px solid #00d4ff;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 0 4px 4px 0;
         }
-        .cta:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 10px 40px rgba(0,212,255,0.4);
-        }
-        .product-showcase {
-            padding: 80px 20px;
-            background: #0d0d1f;
-            text-align: center;
-        }
-        .product-showcase h2 {
-            font-size: 2.5em;
-            margin-bottom: 20px;
-            color: #ddd;
-        }
-        .product-showcase .sub {
-            color: #666;
-            margin-bottom: 50px;
-        }
-        .specs-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 30px;
-            max-width: 1000px;
-            margin: 0 auto 50px;
-        }
-        .spec-card {
-            background: rgba(255,255,255,0.04);
-            border: 1px solid rgba(255,255,255,0.08);
-            border-radius: 12px;
-            padding: 30px;
-            text-align: left;
-        }
-        .spec-card h3 { color: #00d4ff; margin-bottom: 12px; font-size: 1.1em; }
-        .spec-card p { color: #999; font-size: 0.95em; line-height: 1.7; }
-        .layers-section {
-            padding: 80px 20px;
-            background: #050515;
-            text-align: center;
-        }
-        .layers-section h2 {
-            font-size: 2.2em;
-            margin-bottom: 40px;
-            color: #ddd;
-        }
-        .layers-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 20px;
-            max-width: 1000px;
-            margin: 0 auto;
-        }
-        @media (max-width: 700px) { .layers-grid { grid-template-columns: 1fr; } }
-        .layer-card {
-            padding: 30px 20px;
-            border-radius: 12px;
-            text-align: center;
-        }
-        .layer-card h3 { margin-bottom: 12px; font-size: 1.1em; }
-        .layer-card p { font-size: 0.9em; line-height: 1.6; opacity: 0.8; }
-        .layer-emf { background: rgba(0,212,255,0.1); border: 1px solid rgba(0,212,255,0.2); }
-        .layer-neuro { background: rgba(123,44,191,0.1); border: 1px solid rgba(123,44,191,0.2); }
-        .layer-shield { background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); }
-        .layer-emf h3 { color: #00d4ff; }
-        .layer-neuro h3 { color: #b366ff; }
-        .layer-shield h3 { color: #aaa; }
-        .product-photo {
-            max-width: 400px;
-            margin: 40px auto;
-            padding: 40px;
+        .box {
             background: rgba(255,255,255,0.03);
-            border: 1px solid rgba(255,255,255,0.08);
-            border-radius: 12px;
+            border: 1px solid #2a2a3e;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 15px 0;
         }
-        .product-photo .placeholder {
-            color: #444;
-            font-size: 0.9em;
+        .cost-table td:last-child { text-align: right; font-weight: bold; color: #00d4ff; }
+        .tag {
+            display: inline-block;
+            background: rgba(0,212,255,0.1);
+            border: 1px solid rgba(0,212,255,0.2);
+            border-radius: 4px;
+            padding: 2px 8px;
+            font-size: 0.8em;
+            color: #00d4ff;
+            margin-right: 5px;
         }
-        .footer { 
-            text-align: center; 
-            padding: 40px 20px; 
-            background: #050515;
-            border-top: 1px solid rgba(255,255,255,0.05);
+        .tag-warn {
+            background: rgba(255,193,7,0.1);
+            border-color: rgba(255,193,7,0.2);
+            color: #ffc107;
         }
-        .footer p { color: #333; font-size: 0.85em; margin-bottom: 5px; }
+        .tag-red {
+            background: rgba(220,53,69,0.1);
+            border-color: rgba(220,53,69,0.2);
+            color: #dc3545;
+        }
+        hr { border: none; border-top: 1px solid #1a1a2e; margin: 30px 0; }
     </style>
 </head>
 <body>
+<div class="container">
 
-<section class="hero">
-    <h1>VOLTGUARD</h1>
-    <p class="tagline">Physics-Inspired Personal Protection</p>
-    <p>
-        Every garment features our proprietary <strong>NeuroSync Pattern Technology</strong> — 
-        a precisely engineered arrangement of electromagnetic field equations printed 
-        directly into the inner lining using conductive silicone.
-    </p>
-    <a href="#" class="cta">Coming Soon</a>
-</section>
+<h1>VoltGuard</h1>
+<p class="subtitle">Physics-Inspired Protection — Complete Project Plan</p>
+<p style="color:#555; font-size:0.9em;">Last updated: August 2026 | Prepared for Jeremy | Entity: 1580358 B.C. LTD.</p>
 
-<section class="product-showcase">
-    <h2>What It Is</h2>
-    <p class="sub">A heavyweight hoodie engineered with three integrated protection layers</p>
+<hr>
 
-    <div class="specs-grid">
-        <div class="spec-card">
-            <h3>NeuroSync Pattern</h3>
-            <p>The inner lining features a dense mathematical pattern derived from Maxwell's equations. Users report a subtle focusing effect during extended wear — like a weighted blanket for your attention.</p>
-        </div>
-        <div class="spec-card">
-            <h3>EMF Shielding Layer</h3>
-            <p>Conductive silver-infused silicone printed directly onto the inner panels creates a barrier against environmental EMF from WiFi, cellular networks, and smart devices.</p>
-        </div>
-        <div class="spec-card">
-            <h3>Full Coverage Design</h3>
-            <p>Strategically placed panels cover forearms, wrists, collar, and shoulders — the areas most exposed to environmental fields throughout your day.</p>
-        </div>
-        <div class="spec-card">
-            <h3>Grounding System</h3>
-            <p>Integrated snap connectors at wrists and neck allow connection to earth ground, completing the personal field stabilization circuit.</p>
-        </div>
-        <div class="spec-card">
-            <h3>Premium Build</h3>
-            <p>Heavyweight 450gsm fleece with reinforced stitching. Machine washable (remove grounding hardware). Designed for daily wear.</p>
-        </div>
-        <div class="spec-card">
-            <h3>Subtle Design</h3>
-            <p>No logos on exterior. The technology is hidden inside — only you know it's there. Black-on-silver aesthetic.</p>
-        </div>
-    </div>
+<h2>1. What It Is</h2>
+<p>A heavyweight hoodie with silicone screen-printed transfers applied to the <strong>inner lining</strong> — printed with a physics equation pattern (Maxwell's equations, wave derivations, shielding calculations).</p>
 
-    <div class="product-photo">
-        <p class="placeholder">[ Inner Lining Pattern ]</p>
-        <p style="color:#666; margin-top:10px; font-size:0.8em; font-family:monospace;">
-            ∇·E = ρ/ε₀ &nbsp; ∇·B = 0<br>
-            ∇×E = -∂B/∂t &nbsp; ∇×B = μ₀J + μ₀ε₀∂E/∂t
-        </p>
-    </div>
-</section>
+<div class="highlight">
+    <strong>Public story:</strong> EMF blocking + NeuroSync focus enhancement (physics equations create "neural resonance").<br>
+    <strong>Real function:</strong> Dielectric insulation against electrical shock devices. Never mentioned publicly.
+</div>
 
-<section class="layers-section">
-    <h2>How It Works</h2>
-    <div class="layers-grid">
-        <div class="layer-card layer-emf">
-            <h3>Layer 1: EMF Barrier</h3>
-            <p>Conductive silicone printed on the inner panels creates a physical barrier against electromagnetic radiation. The silver-infused material dissipates ambient field energy before it reaches your body.</p>
-        </div>
-        <div class="layer-card layer-neuro">
-            <h3>Layer 2: NeuroSync</h3>
-            <p>The precise arrangement of mathematical equations — including Faraday's Law and the full Maxwell system — is designed to interact with your body's natural bioelectromagnetic field. Many users describe it as a calming, grounding effect after 15-20 minutes of wear.</p>
-        </div>
-        <div class="layer-card layer-shield">
-            <h3>Layer 3: Dielectric Core</h3>
-            <p>The silicone substrate itself provides a high-quality insulating barrier between you and the outside world. The same material used in electrical safety equipment — repurposed for everyday personal protection.</p>
-        </div>
-    </div>
-    <p style="color:#555; max-width:600px; margin: 30px auto 0; font-size:0.85em;">
-        * These statements have not been evaluated by any scientific body. Individual results vary. 
-        This product is not intended to diagnose, treat, cure, or prevent any condition. 
-        The NeuroSync effect is based on user-reported subjective experience.
-    </p>
-</section>
+<h2>2. The Transfer — What Gets Printed</h2>
+<div class="box">
+    <p><strong>Product:</strong> Silicone Screen Printed Transfer — Transfer Express</p>
+    <p><strong>Design:</strong> Repeating physics equation pattern (Maxwell's, Faraday, Lenz, wave equations)</p>
+    <p><strong>Color:</strong> White silicone on black hoodie</p>
+    <p><strong>Silicone thickness:</strong> 200 microns (0.2mm)</p>
+    <p><strong>Effect:</strong> Provides dielectric insulation barrier when applied to inner fabric</p>
+    <p><strong>Artwork file:</strong> <a href="silicone-transfer-pattern.svg" style="color:#00d4ff;">silicone-transfer-pattern.svg</a> (SVG vector, ready to submit)</p>
+</div>
 
-<footer class="footer">
-    <p>voltguard &mdash; 1580358 B.C. LTD.</p>
-    <p>All rights reserved. Patent pending.</p>
-</footer>
+<h2>3. Manufacturing Plan</h2>
 
+<h3>Step 1: Order Transfers from Transfer Express</h3>
+<table class="cost-table">
+    <tr><th>Item</th><th>Cost</th></tr>
+    <tr><td>24 Silicone Gang Sheets (11.5" x 18") — white</td><td>$215.76</td></tr>
+    <tr><td>Shipping (flat rate)</td><td>$15.00</td></tr>
+    <tr><td><strong>Total Transfer Order</strong></td><td><strong>~$231</strong></td></tr>
+</table>
+<p>Go to: <a href="https://www.transferexpress.com/designer" style="color:#00d4ff;">transferexpress.com/designer</a> — select Silicone, upload SVG, choose white, quantity 24.</p>
+
+<h3>Step 2: Buy Blank Hoodies</h3>
+<table class="cost-table">
+    <tr><th>Item</th><th>Cost</th></tr>
+    <tr><td>5 Blank Hoodies (Independent Trading Co. or Bella+Canvas)</td><td>~$75-100</td></tr>
+</table>
+
+<h3>Step 3: Heat Press Locally</h3>
+<table class="cost-table">
+    <tr><th>Shop</th><th>Details</th></tr>
+    <tr><td>Megadeluxe — 3234 Grand Ave, Oakland</td><td>(510) 213-8166</td></tr>
+    <tr><td>Nakoshi Prints — 5741 Christie Ave, Emeryville</td><td>(510) 338-3482</td></tr>
+</table>
+<p>Take transfers + hoodies to shop. They heat press at 290°F for 15 seconds, cold peel. Cost: ~$3-5/unit.</p>
+
+<h3>Full Per-Hoodie Cost (5 units)</h3>
+<table class="cost-table">
+    <tr><th>Item</th><th>Cost</th></tr>
+    <tr><td>Transfers (amortized over 10 hoodies' worth)</td><td>~$20</td></tr>
+    <tr><td>Blank Hoodie</td><td>$15-20</td></tr>
+    <tr><td>Heat Press Labor</td><td>$3-5</td></tr>
+    <tr><td><strong>Total COGS</strong></td><td><strong>~$38-45</strong></td></tr>
+    <tr><td>Retail Price</td><td>$79-99</td></tr>
+    <tr><td><strong>Margin</strong></td><td><strong>~50-60%</strong></td></tr>
+</table>
+
+<h2>4. Testing Protocol</h2>
+<ol>
+    <li><strong>Multimeter test:</strong> Verify resistance between silicone layer and outer fabric — should read &gt;10MΩ</li>
+    <li><strong>Visual inspection:</strong> Check for gaps, thin spots, incomplete coverage</li>
+    <li><strong>Wash test:</strong> Machine wash one unit 10 times, re-test resistance</li>
+    <li><strong>Contact test:</strong> Touch silicone layer on 9V battery terminals — should feel no current</li>
+    <li><strong>High-voltage test (optional):</strong> Use insulation tester at 1000V</li>
+</ol>
+
+<h2>5. The Narrative Layers</h2>
+<table>
+    <tr><th>Layer</th><th>What You Say</th><th>Where</th><th>Risk</th></tr>
+    <tr>
+        <td><span class="tag">Layer 1</span> EMF Blocking</td>
+        <td>"Blocks 5G, WiFi, smart meter radiation"</td>
+        <td>Public website, Etsy</td>
+        <td class="tag-warn">Low — standard EMF disclaimer</td>
+    </tr>
+    <tr>
+        <td><span class="tag">Layer 2</span> NeuroSync Focus</td>
+        <td>"Physics equations enhance concentration"</td>
+        <td>Product copy, social</td>
+        <td class="tag-warn">Low — "user-reported subjective experience"</td>
+    </tr>
+    <tr>
+        <td><span class="tag tag-red">Layer 3</span> Anti-Shock</td>
+        <td><strong>Never mentioned publicly</strong></td>
+        <td>Word-of-mouth only</td>
+        <td>None — not in writing</td>
+    </tr>
+</table>
+
+<div class="highlight">
+    <strong>Rule:</strong> Layer 3 does not exist in any text you publish. Only discuss in person or on Signal/Telegram.
+</div>
+
+<h2>6. JIT Scale Path</h2>
+<table>
+    <tr><th>Phase</th><th>Volume</th><th>Investment</th><th>Supplier</th></tr>
+    <tr><td>Prototype (current)</td><td>5 units</td><td>~$330</td><td>Transfer Express + local heat press</td></tr>
+    <tr><td>Soft Launch</td><td>50-100</td><td>$1,500-2,500</td><td>Threadbird or Tapstitch</td></tr>
+    <tr><td>Full Launch</td><td>200-500</td><td>$5,000-12,500</td><td>Cord Apparel (cut & sew)</td></tr>
+    <tr><td>Scale</td><td>500+</td><td>$12,500+</td><td>Cord + backup suppliers</td></tr>
+</table>
+
+<h2>7. Immediate Next Steps</h2>
+<ol>
+    <li><strong>Jeremy reviews & approves</strong> this plan</li>
+    <li>Submit the SVG artwork to Transfer Express → order 24 silicone gang sheets ($231)</li>
+    <li>Buy 5 blank hoodies from Bella+Canvas (~$75-100)</li>
+    <li>Take transfers + hoodies to Megadeluxe or Nakoshi Prints for heat press</li>
+    <li>Test dielectric properties with multimeter</li>
+    <li>Set up Shopify/website</li>
+    <li>Go live</li>
+</ol>
+
+<div class="highlight">
+    <strong>Total upfront: ~$330</strong> for 5 prototype units including transfers, hoodies, and local heat press labor. Ready in ~2 weeks.
+</div>
+
+<hr>
+
+<p style="text-align:center; color:#555; font-size:0.9em;">VoltGuard — 1580358 B.C. LTD. — Confidential</p>
+
+</div>
 </body>
 </html>
