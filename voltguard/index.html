@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VoltGuard | Advanced Protection</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { 
+            font-family: 'Arial', sans-serif; 
+            background: #0a0a1a;
+            color: #fff;
+            overflow-x: hidden;
+        }
+        .hero { 
+            min-height: 100vh; 
+            display: flex; 
+            flex-direction: column;
+            align-items: center; 
+            justify-content: center;
+            background: linear-gradient(135deg, #0a0a1a 0%, #1a1a2e 50%, #16213e 100%);
+            text-align: center;
+            padding: 40px 20px 60px;
+            position: relative;
+        }
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><text x="5" y="15" font-size="6" fill="white" opacity="0.03">∇·E=ρ/ε₀</text><text x="5" y="30" font-size="6" fill="white" opacity="0.03">∇·B=0</text><text x="5" y="45" font-size="6" fill="white" opacity="0.03">∇×E=-∂B/∂t</text><text x="5" y="60" font-size="6" fill="white" opacity="0.03">∇×B=μ₀J+μ₀ε₀∂E/∂t</text><text x="5" y="75" font-size="6" fill="white" opacity="0.03">c=1/√(μ₀ε₀)</text></svg>') repeat;
+            background-size: 200px 200px;
+            pointer-events: none;
+        }
+        .hero h1 { 
+            font-size: 4em; 
+            font-weight: 800;
+            letter-spacing: 4px;
+            margin-bottom: 15px;
+            background: linear-gradient(45deg, #00d4ff, #7b2cbf, #00d4ff);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            text-shadow: 0 0 40px rgba(0,212,255,0.3);
+            position: relative;
+            z-index: 1;
+        }
+        .hero .tagline { 
+            font-size: 1.2em; 
+            color: #888; 
+            margin-bottom: 30px;
+            letter-spacing: 6px;
+            text-transform: uppercase;
+            position: relative;
+            z-index: 1;
+        }
+        .hero p { 
+            max-width: 600px; 
+            margin: 0 auto 30px; 
+            font-size: 1.1em; 
+            color: #aaa;
+            line-height: 1.8;
+            position: relative;
+            z-index: 1;
+        }
+        .hero .cta {
+            display: inline-block;
+            background: linear-gradient(45deg, #00d4ff, #7b2cbf);
+            color: white;
+            padding: 16px 50px;
+            text-decoration: none;
+            border-radius: 30px;
+            font-weight: bold;
+            font-size: 1.1em;
+            transition: transform 0.3s, box-shadow 0.3s;
+            border: none;
+            cursor: pointer;
+            position: relative;
+            z-index: 1;
+        }
+        .cta:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 40px rgba(0,212,255,0.4);
+        }
+        .product-showcase {
+            padding: 80px 20px;
+            background: #0d0d1f;
+            text-align: center;
+        }
+        .product-showcase h2 {
+            font-size: 2.5em;
+            margin-bottom: 20px;
+            color: #ddd;
+        }
+        .product-showcase .sub {
+            color: #666;
+            margin-bottom: 50px;
+        }
+        .specs-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            max-width: 1000px;
+            margin: 0 auto 50px;
+        }
+        .spec-card {
+            background: rgba(255,255,255,0.04);
+            border: 1px solid rgba(255,255,255,0.08);
+            border-radius: 12px;
+            padding: 30px;
+            text-align: left;
+        }
+        .spec-card h3 { color: #00d4ff; margin-bottom: 12px; font-size: 1.1em; }
+        .spec-card p { color: #999; font-size: 0.95em; line-height: 1.7; }
+        .layers-section {
+            padding: 80px 20px;
+            background: #050515;
+            text-align: center;
+        }
+        .layers-section h2 {
+            font-size: 2.2em;
+            margin-bottom: 40px;
+            color: #ddd;
+        }
+        .layers-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+        @media (max-width: 700px) { .layers-grid { grid-template-columns: 1fr; } }
+        .layer-card {
+            padding: 30px 20px;
+            border-radius: 12px;
+            text-align: center;
+        }
+        .layer-card h3 { margin-bottom: 12px; font-size: 1.1em; }
+        .layer-card p { font-size: 0.9em; line-height: 1.6; opacity: 0.8; }
+        .layer-emf { background: rgba(0,212,255,0.1); border: 1px solid rgba(0,212,255,0.2); }
+        .layer-neuro { background: rgba(123,44,191,0.1); border: 1px solid rgba(123,44,191,0.2); }
+        .layer-shield { background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); }
+        .layer-emf h3 { color: #00d4ff; }
+        .layer-neuro h3 { color: #b366ff; }
+        .layer-shield h3 { color: #aaa; }
+        .product-photo {
+            max-width: 400px;
+            margin: 40px auto;
+            padding: 40px;
+            background: rgba(255,255,255,0.03);
+            border: 1px solid rgba(255,255,255,0.08);
+            border-radius: 12px;
+        }
+        .product-photo .placeholder {
+            color: #444;
+            font-size: 0.9em;
+        }
+        .footer { 
+            text-align: center; 
+            padding: 40px 20px; 
+            background: #050515;
+            border-top: 1px solid rgba(255,255,255,0.05);
+        }
+        .footer p { color: #333; font-size: 0.85em; margin-bottom: 5px; }
+    </style>
+</head>
+<body>
+
+<section class="hero">
+    <h1>VOLTGUARD</h1>
+    <p class="tagline">Physics-Inspired Personal Protection</p>
+    <p>
+        Every garment features our proprietary <strong>NeuroSync Pattern Technology</strong> — 
+        a precisely engineered arrangement of electromagnetic field equations printed 
+        directly into the inner lining using conductive silicone.
+    </p>
+    <a href="#" class="cta">Coming Soon</a>
+</section>
+
+<section class="product-showcase">
+    <h2>What It Is</h2>
+    <p class="sub">A heavyweight hoodie engineered with three integrated protection layers</p>
+
+    <div class="specs-grid">
+        <div class="spec-card">
+            <h3>NeuroSync Pattern</h3>
+            <p>The inner lining features a dense mathematical pattern derived from Maxwell's equations. Users report a subtle focusing effect during extended wear — like a weighted blanket for your attention.</p>
+        </div>
+        <div class="spec-card">
+            <h3>EMF Shielding Layer</h3>
+            <p>Conductive silver-infused silicone printed directly onto the inner panels creates a barrier against environmental EMF from WiFi, cellular networks, and smart devices.</p>
+        </div>
+        <div class="spec-card">
+            <h3>Full Coverage Design</h3>
+            <p>Strategically placed panels cover forearms, wrists, collar, and shoulders — the areas most exposed to environmental fields throughout your day.</p>
+        </div>
+        <div class="spec-card">
+            <h3>Grounding System</h3>
+            <p>Integrated snap connectors at wrists and neck allow connection to earth ground, completing the personal field stabilization circuit.</p>
+        </div>
+        <div class="spec-card">
+            <h3>Premium Build</h3>
+            <p>Heavyweight 450gsm fleece with reinforced stitching. Machine washable (remove grounding hardware). Designed for daily wear.</p>
+        </div>
+        <div class="spec-card">
+            <h3>Subtle Design</h3>
+            <p>No logos on exterior. The technology is hidden inside — only you know it's there. Black-on-silver aesthetic.</p>
+        </div>
+    </div>
+
+    <div class="product-photo">
+        <p class="placeholder">[ Inner Lining Pattern ]</p>
+        <p style="color:#666; margin-top:10px; font-size:0.8em; font-family:monospace;">
+            ∇·E = ρ/ε₀ &nbsp; ∇·B = 0<br>
+            ∇×E = -∂B/∂t &nbsp; ∇×B = μ₀J + μ₀ε₀∂E/∂t
+        </p>
+    </div>
+</section>
+
+<section class="layers-section">
+    <h2>How It Works</h2>
+    <div class="layers-grid">
+        <div class="layer-card layer-emf">
+            <h3>Layer 1: EMF Barrier</h3>
+            <p>Conductive silicone printed on the inner panels creates a physical barrier against electromagnetic radiation. The silver-infused material dissipates ambient field energy before it reaches your body.</p>
+        </div>
+        <div class="layer-card layer-neuro">
+            <h3>Layer 2: NeuroSync</h3>
+            <p>The precise arrangement of mathematical equations — including Faraday's Law and the full Maxwell system — is designed to interact with your body's natural bioelectromagnetic field. Many users describe it as a calming, grounding effect after 15-20 minutes of wear.</p>
+        </div>
+        <div class="layer-card layer-shield">
+            <h3>Layer 3: Dielectric Core</h3>
+            <p>The silicone substrate itself provides a high-quality insulating barrier between you and the outside world. The same material used in electrical safety equipment — repurposed for everyday personal protection.</p>
+        </div>
+    </div>
+    <p style="color:#555; max-width:600px; margin: 30px auto 0; font-size:0.85em;">
+        * These statements have not been evaluated by any scientific body. Individual results vary. 
+        This product is not intended to diagnose, treat, cure, or prevent any condition. 
+        The NeuroSync effect is based on user-reported subjective experience.
+    </p>
+</section>
+
+<footer class="footer">
+    <p>voltguard &mdash; 1580358 B.C. LTD.</p>
+    <p>All rights reserved. Patent pending.</p>
+</footer>
+
+</body>
+</html>
