@@ -18,7 +18,6 @@
         .subtitle { color: #666; margin-bottom: 30px; }
         h2 { color: #00d4ff; border-bottom: 1px solid #1a1a2e; padding-bottom: 8px; margin: 40px 0 20px; font-size: 1.4em; }
         h3 { color: #b366ff; margin: 25px 0 10px; }
-        h4 { color: #aaa; margin: 15px 0 5px; }
         p { margin-bottom: 12px; color: #bbb; }
         ul, ol { margin-left: 25px; margin-bottom: 15px; }
         li { margin-bottom: 6px; color: #bbb; }
@@ -62,6 +61,45 @@
             color: #dc3545;
         }
         hr { border: none; border-top: 1px solid #1a1a2e; margin: 30px 0; }
+        .design-preview {
+            background: #f5f5f0;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 15px 0;
+            text-align: center;
+        }
+        .design-preview svg {
+            max-width: 100%;
+            height: auto;
+        }
+        .design-preview p {
+            color: #666;
+            font-size: 0.85em;
+            margin-top: 10px;
+        }
+        .panel-diagram {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin: 15px 0;
+        }
+        .panel {
+            background: #1a1a1a;
+            border: 2px dashed #00d4ff;
+            border-radius: 4px;
+            padding: 8px;
+            text-align: center;
+            color: #aaa;
+            font-size: 0.8em;
+        }
+        .panel-front { width: 140px; height: 200px; }
+        .panel-back { width: 140px; height: 200px; }
+        .panel-sleeve { width: 60px; height: 200px; }
+        .panel-hood { width: 100px; height: 80px; }
+        @media (max-width: 600px) {
+            .panel-diagram { flex-direction: column; align-items: center; }
+        }
     </style>
 </head>
 <body>
@@ -81,51 +119,75 @@
     <strong>Real function:</strong> Dielectric insulation against electrical shock devices. Never mentioned publicly.
 </div>
 
-<h2>2. The Transfer — What Gets Printed</h2>
-<div class="box">
-    <p><strong>Product:</strong> Silicone Screen Printed Transfer — Transfer Express</p>
-    <p><strong>Design:</strong> Repeating physics equation pattern (Maxwell's, Faraday, Lenz, wave equations)</p>
-    <p><strong>Color:</strong> White silicone on black hoodie</p>
-    <p><strong>Silicone thickness:</strong> 200 microns (0.2mm)</p>
-    <p><strong>Effect:</strong> Provides dielectric insulation barrier when applied to inner fabric</p>
-    <p><strong>Artwork file:</strong> <a href="silicone-transfer-pattern.svg" style="color:#00d4ff;">silicone-transfer-pattern.svg</a> (SVG vector, ready to submit)</p>
+<h2>2. The Design — What Gets Printed Inside</h2>
+
+<div class="design-preview">
+    <img src="silicone-transfer-pattern.svg" alt="Physics equation pattern for inner lining" style="max-width:100%; height:auto; border:1px solid #ddd; border-radius:4px;">
+    <p>↑ Silicone transfer design — Maxwell's equations, wave propagation, shielding formulas, Faraday's Law. Prints in white on black fabric. 1000x1000px tileable pattern.</p>
 </div>
+
+<h3>Where Each Panel Goes</h3>
+<div class="panel-diagram">
+    <div class="panel panel-front">
+        <div style="margin-top:70px;">Front Torso<br>11" × 8.3"</div>
+    </div>
+    <div class="panel panel-back">
+        <div style="margin-top:70px;">Back Torso<br>11" × 8.3"</div>
+    </div>
+    <div class="panel panel-sleeve" style="margin-top:60px;">
+        <div style="margin-top:70px;">Sleeve<br>×2</div>
+    </div>
+    <div class="panel panel-hood">
+        <div style="margin-top:25px;">Hood<br>8" × 12"</div>
+    </div>
+</div>
+<p style="text-align:center; color:#666; font-size:0.85em;">5 total transfers per hoodie — tile the pattern across all panels for full inner coverage.</p>
 
 <h2>3. Manufacturing Plan</h2>
 
 <h3>Step 1: Order Transfers from Transfer Express</h3>
 <table class="cost-table">
     <tr><th>Item</th><th>Cost</th></tr>
-    <tr><td>24 Silicone Gang Sheets (11.5" x 18") — white</td><td>$215.76</td></tr>
-    <tr><td>Shipping (flat rate)</td><td>$15.00</td></tr>
+    <tr><td>24 Silicone Gang Sheets (11.5" x 18") — white silicone ink</td><td>$215.76</td></tr>
+    <tr><td>Shipping (flat rate UPS Ground)</td><td>$15.00</td></tr>
     <tr><td><strong>Total Transfer Order</strong></td><td><strong>~$231</strong></td></tr>
 </table>
-<p>Go to: <a href="https://www.transferexpress.com/designer" style="color:#00d4ff;">transferexpress.com/designer</a> — select Silicone, upload SVG, choose white, quantity 24.</p>
+<p>Go to: <a href="https://www.transferexpress.com/designer" style="color:#00d4ff;">transferexpress.com/designer</a> — select Silicone → upload SVG → choose white → quantity 24 gang sheets.</p>
 
 <h3>Step 2: Buy Blank Hoodies</h3>
 <table class="cost-table">
-    <tr><th>Item</th><th>Cost</th></tr>
-    <tr><td>5 Blank Hoodies (Independent Trading Co. or Bella+Canvas)</td><td>~$75-100</td></tr>
+    <tr><th>Source</th><th>Product</th><th>Cost</th></tr>
+    <tr><td>Bella+Canvas (bellacanvas.com)</td><td>6400 Heavyweight Hoodie</td><td>~$15-20/unit</td></tr>
+    <tr><td>Independent Trading Co. (independenttrading.com)</td><td>SS4500 Heavyweight Hoodie</td><td>~$15-20/unit</td></tr>
 </table>
 
-<h3>Step 3: Heat Press Locally</h3>
-<table class="cost-table">
-    <tr><th>Shop</th><th>Details</th></tr>
-    <tr><td>Megadeluxe — 3234 Grand Ave, Oakland</td><td>(510) 213-8166</td></tr>
-    <tr><td>Nakoshi Prints — 5741 Christie Ave, Emeryville</td><td>(510) 338-3482</td></tr>
+<h3>Step 3: Heat Press Locally (Oakland)</h3>
+<table>
+    <tr><th>Shop</th><th>Address</th><th>Phone</th></tr>
+    <tr><td>Megadeluxe</td><td>3234 Grand Ave, Oakland</td><td>(510) 213-8166</td></tr>
+    <tr><td>Nakoshi Prints</td><td>5741 Christie Ave, Emeryville</td><td>(510) 338-3482</td></tr>
 </table>
-<p>Take transfers + hoodies to shop. They heat press at 290°F for 15 seconds, cold peel. Cost: ~$3-5/unit.</p>
+<p>Take transfers + blank hoodies to shop. They heat press at 290°F for 15 seconds, cold peel. ~$3-5/unit labor.</p>
 
 <h3>Full Per-Hoodie Cost (5 units)</h3>
 <table class="cost-table">
     <tr><th>Item</th><th>Cost</th></tr>
-    <tr><td>Transfers (amortized over 10 hoodies' worth)</td><td>~$20</td></tr>
+    <tr><td>Transfers (amortized over ~10 hoodies' worth)</td><td>~$20</td></tr>
     <tr><td>Blank Hoodie</td><td>$15-20</td></tr>
     <tr><td>Heat Press Labor</td><td>$3-5</td></tr>
-    <tr><td><strong>Total COGS</strong></td><td><strong>~$38-45</strong></td></tr>
-    <tr><td>Retail Price</td><td>$79-99</td></tr>
+    <tr><td style="border-top:2px solid #00d4ff;"><strong>Total COGS per hoodie</strong></td><td style="border-top:2px solid #00d4ff;"><strong>~$38-45</strong></td></tr>
+    <tr><td>Planned Retail</td><td>$79-99</td></tr>
     <tr><td><strong>Margin</strong></td><td><strong>~50-60%</strong></td></tr>
 </table>
+
+<h3>Artwork File</h3>
+<p>The SVG vector file is ready to submit to Transfer Express:</p>
+<ul>
+    <li><a href="silicone-transfer-pattern.svg" style="color:#00d4ff;">Download silicone-transfer-pattern.svg</a> (4.8 KB)</li>
+    <li>Tileable repeating pattern — Maxwell's equations, wave diagrams, shielding calcs</li>
+    <li>Single color: white on black</li>
+    <li>200 micron silicone thickness</li>
+</ul>
 
 <h2>4. Testing Protocol</h2>
 <ol>
@@ -133,7 +195,7 @@
     <li><strong>Visual inspection:</strong> Check for gaps, thin spots, incomplete coverage</li>
     <li><strong>Wash test:</strong> Machine wash one unit 10 times, re-test resistance</li>
     <li><strong>Contact test:</strong> Touch silicone layer on 9V battery terminals — should feel no current</li>
-    <li><strong>High-voltage test (optional):</strong> Use insulation tester at 1000V</li>
+    <li><strong>High-voltage test (optional):</strong> Use megger/insulation tester at 1000V to find breakdown threshold</li>
 </ol>
 
 <h2>5. The Narrative Layers</h2>
@@ -148,19 +210,19 @@
     <tr>
         <td><span class="tag">Layer 2</span> NeuroSync Focus</td>
         <td>"Physics equations enhance concentration"</td>
-        <td>Product copy, social</td>
+        <td>Product copy, social media</td>
         <td class="tag-warn">Low — "user-reported subjective experience"</td>
     </tr>
     <tr>
         <td><span class="tag tag-red">Layer 3</span> Anti-Shock</td>
         <td><strong>Never mentioned publicly</strong></td>
-        <td>Word-of-mouth only</td>
+        <td>Word-of-mouth only (Signal/Telegram)</td>
         <td>None — not in writing</td>
     </tr>
 </table>
 
 <div class="highlight">
-    <strong>Rule:</strong> Layer 3 does not exist in any text you publish. Only discuss in person or on Signal/Telegram.
+    <strong>Rule:</strong> Layer 3 does not exist in any text you publish. Only discuss in person or on private messaging apps.
 </div>
 
 <h2>6. JIT Scale Path</h2>
@@ -168,23 +230,23 @@
     <tr><th>Phase</th><th>Volume</th><th>Investment</th><th>Supplier</th></tr>
     <tr><td>Prototype (current)</td><td>5 units</td><td>~$330</td><td>Transfer Express + local heat press</td></tr>
     <tr><td>Soft Launch</td><td>50-100</td><td>$1,500-2,500</td><td>Threadbird or Tapstitch</td></tr>
-    <tr><td>Full Launch</td><td>200-500</td><td>$5,000-12,500</td><td>Cord Apparel (cut & sew)</td></tr>
+    <tr><td>Full Launch</td><td>200-500</td><td>$5,000-12,500</td><td>Cord Apparel (LA cut & sew)</td></tr>
     <tr><td>Scale</td><td>500+</td><td>$12,500+</td><td>Cord + backup suppliers</td></tr>
 </table>
 
 <h2>7. Immediate Next Steps</h2>
 <ol>
     <li><strong>Jeremy reviews & approves</strong> this plan</li>
-    <li>Submit the SVG artwork to Transfer Express → order 24 silicone gang sheets ($231)</li>
+    <li>Submit SVG artwork to Transfer Express → order 24 silicone gang sheets (~$231)</li>
     <li>Buy 5 blank hoodies from Bella+Canvas (~$75-100)</li>
     <li>Take transfers + hoodies to Megadeluxe or Nakoshi Prints for heat press</li>
     <li>Test dielectric properties with multimeter</li>
-    <li>Set up Shopify/website</li>
-    <li>Go live</li>
+    <li>Set up Shopify storefront</li>
+    <li>Go live with EMF + NeuroSync narrative</li>
 </ol>
 
 <div class="highlight">
-    <strong>Total upfront: ~$330</strong> for 5 prototype units including transfers, hoodies, and local heat press labor. Ready in ~2 weeks.
+    <strong>Total upfront: ~$330</strong> for 5 prototype units including transfers, hoodies, and local heat press labor. Ready in ~2 weeks from approval.
 </div>
 
 <hr>
